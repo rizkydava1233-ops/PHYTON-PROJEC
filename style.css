@@ -1,0 +1,862 @@
+/* =============================================
+   MATRIKS ALJABAR LINEAR — style.css
+   ============================================= */
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --surface2: #1c1c28;
+  --accent: #00e5a0;
+  --accent2: #7c5cfc;
+  --accent3: #ff6b6b;
+  --text: #e8e8f0;
+  --muted: #6b6b8a;
+  --border: #2a2a3d;
+  --mono: 'Space Mono', monospace;
+  --sans: 'Syne', sans-serif;
+}
+
+/* ---- Reset ---- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---- Base ---- */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Grid background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 229, 160, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 160, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---- Header ---- */
+header {
+  position: relative;
+  z-index: 10;
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+header .badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 0.25rem 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  animation: fadeDown 0.5s ease;
+}
+
+header h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  animation: fadeDown 0.6s ease;
+}
+
+header h1 span {
+  color: var(--accent);
+}
+
+header p {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 1rem;
+  font-family: var(--mono);
+  animation: fadeDown 0.7s ease;
+}
+
+/* ---- Nav Tabs ---- */
+nav {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem 2rem;
+  flex-wrap: wrap;
+}
+
+nav button {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+
+nav button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+nav button.active {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+/* ---- Main Content ---- */
+main {
+  position: relative;
+  z-index: 10;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+
+/* ---- Cards ---- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: 0.7rem;
+  font-family: var(--mono);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 1rem;
+}
+
+.card h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* ---- Theory Grid ---- */
+.theory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.theory-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.75rem;
+  transition: border-color 0.2s;
+}
+
+.theory-card:hover {
+  border-color: var(--accent2);
+}
+
+.theory-card .icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.theory-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.theory-card p {
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+.formula {
+  font-family: var(--mono);
+  background: var(--surface2);
+  border-left: 2px solid var(--accent2);
+  padding: 0.75rem 1rem;
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  color: var(--accent);
+  overflow-x: auto;
+}
+
+/* ---- Properties Grid ---- */
+.props-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.prop-label {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.prop-label.accent  { color: var(--accent); }
+.prop-label.accent2 { color: var(--accent2); }
+.prop-label.accent3 { color: var(--accent3); }
+
+/* ---- Steps ---- */
+.step {
+  border-left: 2px solid var(--border);
+  padding-left: 1rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.step .step-title {
+  color: var(--accent2);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Size Controls ---- */
+.size-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.size-controls label {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.size-controls select {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  outline: none;
+  cursor: pointer;
+}
+
+/* ---- Matrix Input ---- */
+.matrix-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+
+.matrix-block {
+  display: flex;
+  align-items: center;
+}
+
+.matrix-bracket {
+  font-size: 3rem;
+  color: var(--accent);
+  font-weight: 100;
+  line-height: 1;
+  font-family: var(--mono);
+}
+
+.matrix-grid {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.5rem;
+}
+
+.matrix-grid input {
+  width: 52px;
+  height: 44px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.matrix-grid input:focus {
+  border-color: var(--accent);
+}
+
+.matrix-label {
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent2);
+  margin-right: 0.75rem;
+  align-self: center;
+}
+
+.op-symbol {
+  font-size: 1.8rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  align-self: center;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn-danger {
+  border-color: var(--accent3);
+  color: var(--accent3);
+}
+
+.btn-danger:hover {
+  background: var(--accent3);
+  color: var(--bg);
+}
+
+.btn-purple {
+  border-color: var(--accent2);
+  color: var(--accent2);
+}
+
+.btn-purple:hover {
+  background: var(--accent2);
+  color: #fff;
+}
+
+/* ---- Result Box ---- */
+.result-box {
+  background: var(--surface2);
+  border: 1px solid var(--accent);
+  border-left: 3px solid var(--accent);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  font-family: var(--mono);
+}
+
+.result-box .result-label {
+  font-size: 0.65rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.75rem;
+}
+
+.result-box .result-inner {
+  display: flex;
+  align-items: center;
+}
+
+.result-bracket {
+  font-size: 2.5rem;
+  color: var(--accent);
+  font-family: var(--mono);
+}
+
+.result-grid {
+  display: inline-grid;
+  gap: 0.4rem;
+  margin: 0 0.25rem;
+}
+
+.result-cell {
+  width: 60px;
+  height: 44px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.result-scalar {
+  font-size: 2rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.result-note {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.error-msg {
+  color: var(--accent3);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); }
+
+/* ---- Animations ---- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .matrix-wrap { gap: 0.75rem; }
+  .matrix-grid input { width: 44px; height: 38px; font-size: 0.8rem; }
+}
+
+/* =============================================
+   LANGKAH PENYELESAIAN — steps styles
+   ============================================= */
+
+.steps-box {
+  margin-top: 1.5rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent2);
+  background: var(--surface);
+}
+
+.steps-title {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--accent2);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+}
+
+.sol-step {
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.sol-step:last-child { border-bottom: none; }
+
+.sol-step-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.sol-step-num {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--bg);
+  background: var(--accent2);
+  padding: 0.15rem 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.sol-step-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.sol-step-content {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.7;
+  padding-left: 0.25rem;
+}
+
+.step-row {
+  margin-bottom: 0.3rem;
+  line-height: 1.6;
+}
+
+.hl {
+  color: var(--accent2);
+  font-weight: 700;
+}
+
+.hl-green {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Small calc grid inside steps */
+.calc-grid {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  width: fit-content;
+}
+
+.calc-cell {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.5rem;
+  text-align: center;
+  min-width: 64px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.calc-eq {
+  color: var(--text);
+  font-size: 0.72rem;
+}
+
+.calc-res {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* Inline matrix inside steps */
+.inline-mat {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  vertical-align: middle;
+  margin: 0 0.2rem;
+}
+
+.inline-bracket {
+  font-size: 1.6rem;
+  color: var(--accent);
+  font-family: var(--mono);
+  line-height: 1;
+  font-weight: 300;
+}
+
+.inline-grid {
+  display: inline-grid;
+  gap: 3px;
+  padding: 3px;
+}
+
+.inline-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 28px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text);
+}
+
+/* =============================================
+   GAUSS / GAUSS-JORDAN
+   ============================================= */
+
+/* Augmented matrix input */
+.aug-wrap {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+}
+
+.aug-label-row {
+  display: flex;
+  gap: 0;
+  margin-bottom: 0.35rem;
+  padding-left: 2.8rem;
+}
+
+.aug-var-label {
+  width: 58px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--accent2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.aug-var-label.b-label {
+  color: var(--accent3);
+  border-left: 2px solid var(--border);
+  margin-left: 2px;
+}
+
+.aug-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 0.35rem;
+}
+
+.aug-row-label {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--accent2);
+  width: 2.5rem;
+  text-align: right;
+  padding-right: 0.4rem;
+  font-weight: 700;
+}
+
+.aug-row input {
+  width: 58px;
+  height: 40px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-right: none;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.aug-row input:last-child {
+  border-right: 1px solid var(--border);
+}
+
+.aug-row input:focus {
+  border-color: var(--accent);
+  background: var(--bg);
+  z-index: 1;
+  position: relative;
+}
+
+.aug-row input.b-input {
+  background: rgba(255,107,107,0.05);
+  border-left: 2px solid var(--accent3);
+}
+
+.aug-separator {
+  width: 2px;
+  height: 40px;
+  background: var(--border);
+  margin: 0 2px;
+}
+
+/* Gauss steps table */
+.gauss-steps {
+  margin-top: 1.5rem;
+}
+
+.gauss-step-block {
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent2);
+  animation: fadeIn 0.3s ease;
+}
+
+.gauss-step-header {
+  background: var(--surface2);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.gauss-step-badge {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--bg);
+  background: var(--accent2);
+  padding: 0.15rem 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.gauss-op-text {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+}
+
+.gauss-step-body {
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+}
+
+/* Augmented matrix display table */
+.aug-table {
+  border-collapse: separate;
+  border-spacing: 3px;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+}
+
+.aug-table .row-lbl {
+  color: var(--accent2);
+  font-size: 0.72rem;
+  padding-right: 0.5rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.aug-table td.mat-cell {
+  width: 56px;
+  height: 36px;
+  text-align: center;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0 4px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.aug-table td.mat-cell.pivot {
+  background: rgba(0,229,160,0.18);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.aug-table td.mat-cell.changed {
+  background: rgba(124,92,252,0.18);
+  border-color: var(--accent2);
+  color: var(--accent2);
+  font-weight: 700;
+}
+
+.aug-table td.mat-cell.zero {
+  color: var(--muted);
+}
+
+.aug-table td.sep-cell {
+  width: 4px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-left: 2px solid var(--accent3);
+}
+
+.aug-table td.b-cell {
+  background: rgba(255,107,107,0.06);
+  border-color: rgba(255,107,107,0.3);
+  color: var(--accent3);
+}
+
+.aug-table td.b-cell.changed {
+  background: rgba(255,107,107,0.18);
+  border-color: var(--accent3);
+  font-weight: 700;
+}
+
+/* Solution display */
+.gauss-solution {
+  background: var(--surface2);
+  border: 1px solid var(--accent);
+  border-left: 3px solid var(--accent);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.25rem;
+  font-family: var(--mono);
+}
+
+.gauss-solution .sol-title {
+  font-size: 0.65rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.75rem;
+}
+
+.gauss-sol-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.gauss-sol-var {
+  color: var(--accent2);
+  font-weight: 700;
+  width: 2.5rem;
+}
+
+.gauss-sol-val {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.gauss-no-sol {
+  color: var(--accent3);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--accent3);
+}

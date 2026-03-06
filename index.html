@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matriks — Aljabar Linear</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="badge">Aljabar Linear — Interaktif</div>
+    <h1>MAT<span>RIKS</span></h1>
+    <p>// operasi, sifat, dan kalkulator matriks</p>
+  </header>
+
+  <nav id="nav">
+    <button class="active" data-tab="teori">Teori</button>
+    <button data-tab="penjumlahan">Penjumlahan</button>
+    <button data-tab="perkalian">Perkalian</button>
+    <button data-tab="transpose">Transpose</button>
+    <button data-tab="determinan">Determinan</button>
+    <button data-tab="invers">Invers</button>
+    <button data-tab="gauss">Gauss / Gauss-Jordan</button>
+  </nav>
+
+  <main>
+
+    <!-- TEORI -->
+    <div class="section active" id="teori">
+      <div class="card">
+        <div class="card-title">// definisi</div>
+        <h2>Apa itu Matriks?</h2>
+        <p>Matriks adalah susunan bilangan berbentuk persegi panjang yang terdiri dari baris dan kolom. Sebuah matriks berukuran <strong>m × n</strong> memiliki <em>m</em> baris dan <em>n</em> kolom, di mana setiap elemen dinotasikan sebagai a<sub>ij</sub> (baris ke-i, kolom ke-j).</p>
+      </div>
+
+      <div class="theory-grid">
+        <div class="theory-card">
+          <div class="icon">➕</div>
+          <h3>Penjumlahan Matriks</h3>
+          <p>Dua matriks dapat dijumlahkan hanya jika memiliki ukuran yang sama (m×n). Penjumlahan dilakukan elemen per elemen.</p>
+          <div class="formula">(A + B)ᵢⱼ = aᵢⱼ + bᵢⱼ</div>
+        </div>
+        <div class="theory-card">
+          <div class="icon">✖️</div>
+          <h3>Perkalian Matriks</h3>
+          <p>Matriks A (m×n) dapat dikalikan B (n×p) jika jumlah kolom A sama dengan jumlah baris B. Hasilnya matriks m×p.</p>
+          <div class="formula">(AB)ᵢⱼ = Σₖ aᵢₖ · bₖⱼ</div>
+        </div>
+        <div class="theory-card">
+          <div class="icon">↔️</div>
+          <h3>Transpose</h3>
+          <p>Transpose matriks diperoleh dengan menukar baris dan kolomnya. Matriks m×n menjadi n×m setelah ditranspose.</p>
+          <div class="formula">(Aᵀ)ᵢⱼ = aⱼᵢ</div>
+        </div>
+        <div class="theory-card">
+          <div class="icon">△</div>
+          <h3>Determinan</h3>
+          <p>Determinan adalah nilai skalar dari matriks persegi. Untuk matriks 2×2: det(A) = ad - bc. Jika det ≠ 0, matriks invertibel.</p>
+          <div class="formula">det(A) = ad - bc</div>
+        </div>
+        <div class="theory-card">
+          <div class="icon">⁻¹</div>
+          <h3>Invers Matriks</h3>
+          <p>Invers matriks A adalah A⁻¹ sedemikian sehingga A·A⁻¹ = I. Hanya matriks persegi dengan det ≠ 0 yang memiliki invers.</p>
+          <div class="formula">A⁻¹ = (1/det(A)) · adj(A)</div>
+        </div>
+        <div class="theory-card">
+          <div class="icon">🔷</div>
+          <h3>Matriks Identitas</h3>
+          <p>Matriks identitas I adalah matriks diagonal dengan semua elemen diagonal bernilai 1 dan elemen lainnya 0. Bersifat seperti angka 1 dalam perkalian.</p>
+          <div class="formula">A · I = I · A = A</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:1.5rem">
+        <div class="card-title">// sifat-sifat penting</div>
+        <h2>Sifat Operasi Matriks</h2>
+        <div class="props-grid">
+          <div>
+            <p class="prop-label accent">PENJUMLAHAN</p>
+            <div class="step"><div class="step-title">Komutatif</div>A + B = B + A</div>
+            <div class="step"><div class="step-title">Asosiatif</div>(A + B) + C = A + (B + C)</div>
+          </div>
+          <div>
+            <p class="prop-label accent2">PERKALIAN</p>
+            <div class="step"><div class="step-title">Tidak Komutatif</div>AB ≠ BA (umumnya)</div>
+            <div class="step"><div class="step-title">Asosiatif</div>(AB)C = A(BC)</div>
+            <div class="step"><div class="step-title">Distributif</div>A(B + C) = AB + AC</div>
+          </div>
+          <div>
+            <p class="prop-label accent3">TRANSPOSE</p>
+            <div class="step"><div class="step-title">Invers Transpose</div>(Aᵀ)ᵀ = A</div>
+            <div class="step"><div class="step-title">Transpose Jumlah</div>(A+B)ᵀ = Aᵀ + Bᵀ</div>
+            <div class="step"><div class="step-title">Transpose Produk</div>(AB)ᵀ = BᵀAᵀ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PENJUMLAHAN -->
+    <div class="section" id="penjumlahan">
+      <div class="card">
+        <div class="card-title">// operasi</div>
+        <h2>Penjumlahan &amp; Pengurangan Matriks</h2>
+        <p>Masukkan elemen matriks A dan B (ukuran harus sama). Operasi dilakukan elemen per elemen.</p>
+        <div class="size-controls">
+          <label>Ukuran:</label>
+          <select id="addSize" onchange="renderAddMatrices()">
+            <option value="2">2 × 2</option>
+            <option value="3">3 × 3</option>
+            <option value="4">4 × 4</option>
+          </select>
+        </div>
+        <div class="matrix-wrap" id="addMatrices"></div>
+        <div>
+          <button class="btn" onclick="matrixAdd(1)">Hitung A + B</button>
+          <button class="btn btn-danger" onclick="matrixAdd(-1)">Hitung A − B</button>
+          <button class="btn btn-purple" onclick="fillRandom('addA','addB')">Isi Acak</button>
+        </div>
+        <div id="addResult"></div>
+      </div>
+    </div>
+
+    <!-- PERKALIAN -->
+    <div class="section" id="perkalian">
+      <div class="card">
+        <div class="card-title">// operasi</div>
+        <h2>Perkalian Matriks</h2>
+        <p>A (m×n) × B (n×p). Jumlah kolom A harus sama dengan jumlah baris B.</p>
+        <div class="size-controls">
+          <label>A:</label>
+          <select id="mulRowA">
+            <option value="2" selected>2 baris</option>
+            <option value="3">3 baris</option>
+          </select>
+          <select id="mulColA" onchange="renderMulMatrices()">
+            <option value="2" selected>2 kolom</option>
+            <option value="3">3 kolom</option>
+          </select>
+          <label>B:</label>
+          <select id="mulRowB" onchange="renderMulMatrices()">
+            <option value="2" selected>2 baris</option>
+            <option value="3">3 baris</option>
+          </select>
+          <select id="mulColB" onchange="renderMulMatrices()">
+            <option value="2" selected>2 kolom</option>
+            <option value="3">3 kolom</option>
+          </select>
+        </div>
+        <div class="matrix-wrap" id="mulMatrices"></div>
+        <button class="btn" onclick="matrixMul()">Hitung A × B</button>
+        <button class="btn btn-purple" onclick="fillRandom('mulA','mulB')">Isi Acak</button>
+        <div id="mulResult"></div>
+      </div>
+    </div>
+
+    <!-- TRANSPOSE -->
+    <div class="section" id="transpose">
+      <div class="card">
+        <div class="card-title">// operasi</div>
+        <h2>Transpose Matriks</h2>
+        <p>Tukar baris dan kolom. Matriks m×n menjadi n×m.</p>
+        <div class="size-controls">
+          <label>Ukuran:</label>
+          <select id="transSize" onchange="renderTransMatrix()">
+            <option value="2">2 × 2</option>
+            <option value="3" selected>3 × 3</option>
+            <option value="4">4 × 4</option>
+          </select>
+        </div>
+        <div class="matrix-wrap" id="transMatrix"></div>
+        <button class="btn" onclick="doTranspose()">Transpose</button>
+        <button class="btn btn-purple" onclick="fillRandom('transA')">Isi Acak</button>
+        <div id="transResult"></div>
+      </div>
+    </div>
+
+    <!-- DETERMINAN -->
+    <div class="section" id="determinan">
+      <div class="card">
+        <div class="card-title">// operasi</div>
+        <h2>Determinan Matriks</h2>
+        <p>Hitung nilai determinan matriks persegi. Mendukung ukuran 2×2, 3×3, dan 4×4.</p>
+        <div class="size-controls">
+          <label>Ukuran:</label>
+          <select id="detSize" onchange="renderDetMatrix()">
+            <option value="2">2 × 2</option>
+            <option value="3" selected>3 × 3</option>
+            <option value="4">4 × 4</option>
+          </select>
+        </div>
+        <div class="matrix-wrap" id="detMatrix"></div>
+        <button class="btn" onclick="doDeterminant()">Hitung Determinan</button>
+        <button class="btn btn-purple" onclick="fillRandom('detA')">Isi Acak</button>
+        <div id="detResult"></div>
+      </div>
+    </div>
+
+    <!-- INVERS -->
+    <div class="section" id="invers">
+      <div class="card">
+        <div class="card-title">// operasi</div>
+        <h2>Invers Matriks</h2>
+        <p>Hitung invers matriks persegi. Invers hanya ada jika determinan ≠ 0.</p>
+        <div class="size-controls">
+          <label>Ukuran:</label>
+          <select id="invSize" onchange="renderInvMatrix()">
+            <option value="2" selected>2 × 2</option>
+            <option value="3">3 × 3</option>
+          </select>
+        </div>
+        <div class="matrix-wrap" id="invMatrix"></div>
+        <button class="btn" onclick="doInverse()">Hitung Invers</button>
+        <button class="btn btn-purple" onclick="fillRandom('invA')">Isi Acak</button>
+        <div id="invResult"></div>
+      </div>
+    </div>
+
+    <!-- GAUSS / GAUSS-JORDAN -->
+    <div class="section" id="gauss">
+      <div class="card">
+        <div class="card-title">// eliminasi</div>
+        <h2>Eliminasi Gauss &amp; Gauss-Jordan</h2>
+        <p>Selesaikan sistem persamaan linear Ax = b dengan metode eliminasi baris. Masukkan matriks koefisien A dan vektor b.</p>
+
+        <div class="size-controls">
+          <label>Persamaan:</label>
+          <select id="gaussSize" onchange="renderGaussMatrix()">
+            <option value="2">2 × 2</option>
+            <option value="3" selected>3 × 3</option>
+            <option value="4">4 × 4</option>
+          </select>
+          <label style="margin-left:1rem">Metode:</label>
+          <select id="gaussMethod">
+            <option value="gauss">Eliminasi Gauss</option>
+            <option value="jordan">Gauss-Jordan</option>
+          </select>
+        </div>
+
+        <!-- Augmented matrix input -->
+        <div class="aug-wrap">
+          <div class="aug-label-row" id="gaussVarLabels"></div>
+          <div id="gaussInputArea"></div>
+        </div>
+
+        <div style="margin-top:1rem">
+          <button class="btn" onclick="doGauss()">Hitung</button>
+          <button class="btn btn-purple" onclick="fillGaussRandom()">Isi Acak</button>
+          <button class="btn btn-danger" onclick="resetGauss()">Reset</button>
+        </div>
+        <div id="gaussResult"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
